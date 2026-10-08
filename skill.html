@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Skillmyze | Learn Skills & Grow</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#050b14;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  width:350px;
+  height:350px;
+  background:#0066ff;
+  filter:blur(140px);
+  opacity:.18;
+  top:5%;
+  left:-120px;
+  z-index:-1;
+  animation:float1 7s infinite alternate;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  width:350px;
+  height:350px;
+  background:#00eaff;
+  filter:blur(140px);
+  opacity:.14;
+  right:-120px;
+  bottom:5%;
+  z-index:-1;
+  animation:float2 8s infinite alternate;
+}
+
+@keyframes float1{
+  to{
+    transform:translate(100px,80px);
+  }
+}
+
+@keyframes float2{
+  to{
+    transform:translate(-100px,-80px);
+  }
+}
+
+/* NAVBAR */
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  padding:18px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(5,11,20,.78);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  color:#00eaff;
+  text-shadow:0 0 15px #00eaff;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* HERO */
+.hero{
+  min-height:650px;
+  padding:90px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:50px;
+}
+
+.hero-text{
+  max-width:650px;
+  animation:fadeUp 1s ease;
+}
+
+.tag{
+  display:inline-block;
+  padding:9px 17px;
+  border:1px solid #00eaff;
+  border-radius:30px;
+  color:#00eaff;
+  background:rgba(0,234,255,.07);
+  box-shadow:0 0 20px rgba(0,234,255,.15);
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-size:clamp(42px,7vw,78px);
+  line-height:1;
+  margin-bottom:25px;
+}
+
+.hero h1 span{
+  color:#00eaff;
+  text-shadow:
+    0 0 10px #00eaff,
+    0 0 30px #008cff;
+  animation:pulse 2s infinite alternate;
+}
+
+@keyframes pulse{
+  to{
+    text-shadow:
+      0 0 20px #00eaff,
+      0 0 50px #008cff;
+  }
+}
+
+.hero p{
+  color:#b9c9d8;
+  font-size:18px;
+  line-height:1.8;
+  max-width:580px;
+}
+
+.buttons{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.btn{
+  display:inline-block;
+  padding:15px 25px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.primary{
+  background:#00eaff;
+  color:#001018;
+  box-shadow:0 0 25px rgba(0,234,255,.45);
+}
+
+.primary:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 40px rgba(0,234,255,.7);
+}
+
+.secondary{
+  border:1px solid #30465c;
+  color:white;
+  background:#0c1725;
+}
+
+.secondary:hover{
+  border-color:#00eaff;
+}
+
+/* HERO CARD */
+.hero-card{
+  width:330px;
+  min-height:380px;
+  padding:30px;
+  border:1px solid rgba(0,234,255,.3);
+  border-radius:28px;
+  background:linear-gradient(
+    145deg,
+    rgba(18,35,55,.9),
+    rgba(7,16,28,.8)
+  );
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.4),
+    inset 0 0 30px rgba(0,234,255,.04);
+  animation:cardFloat 4s infinite ease-in-out;
+}
+
+@keyframes cardFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-15px);
+  }
+}
+
+.course-icon{
+  width:75px;
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  border-radius:20px;
+  background:#0d2a3b;
+  box-shadow:0 0 30px rgba(0,234,255,.2);
+  margin-bottom:25px;
+}
+
+.hero-card h2{
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+.hero-card p{
+  color:#9fb0c1;
+  line-height:1.7;
+}
+
+.price{
+  margin-top:25px;
+  font-size:30px;
+  color:#00eaff;
+  font-weight:bold;
+}
+
+/* SECTION */
+section{
+  padding:90px 7%;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.section-title .small{
+  color:#00eaff;
+  font-size:14px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+.section-title h2{
+  font-size:42px;
+  margin-top:10px;
+}
+
+.section-title p{
+  color:#91a3b5;
+  margin-top:12px;
+}
+
+/* FEATURES */
+.grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.box{
+  padding:30px;
+  border-radius:20px;
+  background:rgba(13,27,43,.72);
+  border:1px solid rgba(255,255,255,.07);
+  transition:.35s;
+}
+
+.box:hover{
+  transform:translateY(-8px);
+  border-color:rgba(0,234,255,.45);
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.box .icon{
+  font-size:35px;
+  margin-bottom:20px;
+}
+
+.box h3{
+  margin-bottom:12px;
+}
+
+.box p{
+  color:#93a7ba;
+  line-height:1.7;
+}
+
+/* COURSE */
+.course-section{
+  background:#07111d;
+}
+
+.course-main{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:25px;
+}
+
+.course-info,
+.course-side{
+  padding:35px;
+  border-radius:24px;
+  background:linear-gradient(
+    145deg,
+    #0d1d2d,
+    #08121f
+  );
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.course-info h2{
+  font-size:32px;
+  color:#ff526f;
+  margin-bottom:18px;
+}
+
+.course-info p{
+  color:#a8bacb;
+  line-height:1.8;
+}
+
+.list{
+  margin-top:25px;
+}
+
+.list div{
+  padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  color:#dce8f1;
+}
+
+.list div::first-letter{
+  color:#00eaff;
+}
+
+.course-side{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.course-side h3{
+  font-size:25px;
+  margin-bottom:12px;
+}
+
+.course-side p{
+  color:#93a7b9;
+  line-height:1.7;
+}
+
+.big-btn{
+  width:100%;
+  text-align:center;
+  margin-top:25px;
+}
+
+/* STEPS */
+.steps{
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  gap:18px;
+}
+
+.step{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  padding:22px;
+  background:#0b1827;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:18px;
+}
+
+.number{
+  min-width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#00eaff;
+  color:#001018;
+  font-weight:bold;
+  font-size:20px;
+  box-shadow:0 0 20px rgba(0,234,255,.35);
+}
+
+.step h3{
+  margin-bottom:6px;
+}
+
+.step p{
+  color:#8fa3b6;
+}
+
+/* EARNING / AFFILIATE */
+.earning{
+  text-align:center;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0,234,255,.08),
+      transparent 55%
+    );
+}
+
+.earning-card{
+  max-width:850px;
+  margin:auto;
+  padding:45px;
+  border:1px solid rgba(0,234,255,.25);
+  border-radius:28px;
+  background:rgba(8,20,33,.8);
+}
+
+.earning-card h2{
+  font-size:38px;
+}
+
+.earning-card p{
+  color:#a5b7c8;
+  line-height:1.8;
+  margin:18px auto;
+  max-width:680px;
+}
+
+/* FAQ */
+.faq{
+  max-width:850px;
+  margin:auto;
+}
+
+details{
+  margin-bottom:12px;
+  padding:20px;
+  border-radius:15px;
+  background:#0b1827;
+  border:1px solid rgba(255,255,255,.07);
+}
+
+summary{
+  cursor:pointer;
+  font-weight:bold;
+}
+
+details p{
+  color:#9aabba;
+  line-height:1.7;
+  margin-top:15px;
+}
+
+/* FINAL CTA */
+.final{
+  text-align:center;
+  padding:100px 20px;
+}
+
+.final h2{
+  font-size:45px;
+}
+
+.final p{
+  color:#9fb1c1;
+  margin-top:15px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px 20px;
+  background:#03070d;
+  border-top:1px solid rgba(255,255,255,.06);
+  color:#708397;
+}
+
+footer strong{
+  color:#00eaff;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+  .hero{
+    flex-direction:column;
+    text-align:center;
+    padding:65px 20px;
+  }
+
+  .hero p{
+    margin:auto;
+  }
+
+  .buttons{
+    justify-content:center;
+  }
+
+  .hero-card{
+    width:100%;
+    max-width:360px;
+  }
+
+  section{
+    padding:70px 20px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .course-main{
+    grid-template-columns:1fr;
+  }
+
+  .section-title h2{
+    font-size:34px;
+  }
+
+  .final h2{
+    font-size:35px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">SKILLMYZE</div>
+
+  <a href="#course">Courses</a>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-text">
+
+    <div class="tag">
+      🚀 LEARN • BUILD • GROW
+    </div>
+
+    <h1>
+      Build Your
+      <span>Personal Brand.</span>
+    </h1>
+
+    <p>
+      Learn useful digital skills, improve your online presence
+      and start building your personal brand step by step.
+    </p>
+
+    <div class="buttons">
+
+      <a class="btn primary"
+      href="https://skillmyze.com/register_id/unique_id=1791432356/SM_id=SM00028355400/package=0"
+      target="_blank">
+        🚀 Enroll Now
+      </a>
+
+      <a class="btn secondary" href="#course">
+        Explore Course ↓
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="hero-card">
+
+    <div class="course-icon">
+      🎯
+    </div>
+
+    <h2>
+      Personal Branding
+    </h2>
+
+    <p>
+      A beginner-friendly learning experience
+      to understand personal branding and digital presence.
+    </p>
+
+    <div class="price">
+      Start Learning
+    </div>
+
+    <a class="btn primary big-btn"
+    href="https://skillmyze.com/register_id/unique_id=1791432356/SM_id=SM00028355400/package=0"
+    target="_blank">
+      Join Now →
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section>
+
+  <div class="section-title">
+
+    <div class="small">
+      WHY LEARN?
+    </div>
+
+    <h2>
+      Skills For The Digital World
+    </h2>
+
+    <p>
+      Learn, practice and build your digital identity.
+    </p>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="box">
+      <div class="icon">🎯</div>
+      <h3>Personal Branding</h3>
+      <p>
+        Understand how to present your skills and identity online.
+      </p>
+    </div>
+
+    <div class="box">
+      <div class="icon">📱</div>
+      <h3>Digital Presence</h3>
+      <p>
+        Learn useful concepts for creating a professional online presence.
+      </p>
+    </div>
+
+    <div class="box">
+      <div class="icon">🚀</div>
+      <h3>Start Your Journey</h3>
+      <p>
+        Learn step by step and apply what you learn in your own projects.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- COURSE -->
+<section class="course-section" id="course">
+
+  <div class="section-title">
+
+    <div class="small">
+      FEATURED COURSE
+    </div>
+
+    <h2>
+      Personal Branding Course
+    </h2>
+
+  </div>
+
+
+  <div class="course-main">
+
+    <div class="course-info">
+
+      <h2>
+        📚 Learn Personal Branding
+      </h2>
+
+      <p>
+        Build a stronger understanding of personal branding,
+        digital identity and online presence through structured learning.
+      </p>
+
+      <div class="list">
+
+        <div>✓ Personal Branding Basics</div>
+
+        <div>✓ Online Identity</div>
+
+        <div>✓ Digital Presence</div>
+
+        <div>✓ Practical Learning</div>
+
+        <div>✓ Beginner Friendly</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="course-side">
+
+      <h3>
+        Ready To Learn?
+      </h3>
+
+      <p>
+        Open the enrollment page and continue to the official
+        Skillmyze platform.
+      </p>
+
+      <a class="btn primary big-btn"
+      href="https://skillmyze.com/register_id/unique_id=1791432356/SM_id=SM00028355400/package=0"
+      target="_blank">
+        🔥 Enroll Now
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section>
+
+  <div class="section-title">
+
+    <div class="small">
+      SIMPLE PROCESS
+    </div>
+
+    <h2>
+      How It Works
+    </h2>
+
+  </div>
+
+
+  <div class="steps">
+
+    <div class="step">
+
+      <div class="number">1</div>
+
+      <div>
+        <h3>Enroll</h3>
+        <p>
+          Open the official enrollment page and choose the course.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="number">2</div>
+
+      <div>
+        <h3>Learn</h3>
+        <p>
+          Access the course and learn the skills step by step.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="number">3</div>
+
+      <div>
+        <h3>Apply</h3>
+        <p>
+          Practice what you learn and build your digital skills.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="number">4</div>
+
+      <div>
+        <h3>Grow</h3>
+        <p>
+          Continue learning and explore eligible affiliate opportunities
+          according to the platform's terms.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- AFFILIATE -->
+<section class="earning">
+
+  <div class="earning-card">
+
+    <div class="tag">
+      💼 AFFILIATE OPPORTUNITY
+    </div>
+
+    <h2>
+      Learn Skills. Share. Grow.
+    </h2>
+
+    <p>
+      If you are eligible for the platform's affiliate program,
+      you may be able to share your referral link and earn commissions
+      according to Skillmyze's current terms and conditions.
+      Earnings are not guaranteed.
+    </p>
+
+    <a class="btn primary"
+    href="https://skillmyze.com/register_id/unique_id=1791432356/SM_id=SM00028355400/package=0"
+    target="_blank">
+      🚀 Get Started
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- FAQ -->
+<section>
+
+  <div class="section-title">
+
+    <div class="small">
+      FAQ
+    </div>
+
+    <h2>
+      Frequently Asked Questions
+    </h2>
+
+  </div>
+
+
+  <div class="faq">
+
+    <details>
+      <summary>What is this course about?</summary>
+      <p>
+        It focuses on learning personal branding and building
+        a better digital presence.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>Who can start learning?</summary>
+      <p>
+        Beginners interested in learning digital skills can
+        explore the course and its requirements.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>Can I earn money after learning?</summary>
+      <p>
+        Learning a course does not guarantee income.
+        Eligible users may explore affiliate opportunities
+        according to the platform's rules and conditions.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>Where does the Enroll button go?</summary>
+      <p>
+        The button opens the Skillmyze enrollment page
+        through the referral link provided on this website.
+      </p>
+    </details>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="final">
+
+  <div class="tag">
+    START TODAY
+  </div>
+
+  <h2>
+    Your Digital Journey Starts Here.
+  </h2>
+
+  <p>
+    Learn useful skills and take your next step.
+  </p>
+
+  <a class="btn primary"
+  href="https://skillmyze.com/register_id/unique_id=1791432356/SM_id=SM00028355400/package=0"
+  target="_blank">
+    🚀 Enroll Now
+  </a>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <strong>SKILLMYZE</strong>
+
+  <br><br>
+
+  Learn • Build • Grow
+
+  <br><br>
+
+  © 2026 Skillmyze Learning Page
+
+</footer>
+
+</body>
+</html>
